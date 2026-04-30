@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+   /* ================= HERO IMAGE ================= */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+/* Background image */
+.hero-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text on image (cloud area) */
+.hero-text {
+  position: absolute;
+  top: 15%;               /* moves text to cloud area */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px 25px;
+  background: rgba(0, 0, 0, 0.35); /* readable on clouds */
+  border-radius: 8px;
+  letter-spacing: 2px;
+}
+
+.site-header {
+  text-align: center;
+  
+  color: white;
+  padding: 25px;
+  position: relative;
+  transition: 
+    background 0.6s ease,
+    transform 0.6s ease,
+    box-shadow 0.6s ease;
+}
+
+/* HOVER: background + size + movement */
+.site-header:hover {
+  background: linear-gradient(120deg, #8e44ad, #3498db);
+  transform: scale(1.05) translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* LOGO IMAGE */
+.site-header img {
+  width: 1400px;
+  height: 500px;
+  margin-bottom: 
+  transition: transform 0.6s ease;
+}
+
+/* LOGO MOVES & ROTATES */
+.site-header:hover img {
+  transform: translateY(-10px) rotate(10deg) scale(1.15);
+}
+
+/* HEADING */
+.site-header h1 {
+  margin: 10px 0 5px;
+  transition: 
+    letter-spacing 0.5s ease,
+    text-shadow 0.5s ease;
+}
+
+/* HEADING ANIMATION */
+.site-header:hover h1 {
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+}
+
+/* SUBTEXT */
+.site-header p {
+  transition: transform 0.5s ease;
+}
+
+/* SUBTEXT SLIDES */
+.site-header:hover p {
+  transform: translateX(10px);
+}
+
+
+/* 🔹 Grid layout: 2 rows × 3 columns */
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 30px;
+}
+
+.event-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.event-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.event-card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+/* EVENT CARD BASE */
+.event-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 
+    background-color 0.4s ease,
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* HOVER EFFECT: background + size + movement */
+.event-card:hover {
+  background-color: #eaf6ff;          /* background color change */
+  transform: scale(1.06) translateY(-10px); /* size + movement */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* IMAGE HOVER ANIMATION */
+.event-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: transform 0.4s ease;
+}
+
+/* Image zoom on hover */
+.event-card:hover .event-img {
+  transform: scale(1.08);
+}
+
+/* TITLE ANIMATION */
+.event-card h2 {
+  font-size: 18px;
+  margin: 10px 0;
+  transition: color 0.4s ease, letter-spacing 0.4s ease;
+}
+
+.event-card:hover h2 {
+  color: #2c3e50;
+  letter-spacing: 1px;
+}
+
+footer {
+  text-align: center;
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+}

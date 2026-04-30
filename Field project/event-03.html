@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Community Health Camp</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      margin: 0;
+    }
+
+    .site-header {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+    }
+
+    /* General section cards */
+    .event-card {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    img {
+      width: 700px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Colored info cards */
+    .info-card {
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .blue { background: #e3f2fd; }
+    .green { background: #e8f5e9; }
+    .orange { background: #fff3e0; }
+    .purple { background: #f3e5f5; }
+
+    /* Registration card */
+    #registerCard {
+      width: 420px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      border-top: 5px solid #2c3e50;
+    }
+
+    #registerCard label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #registerCard input, 
+    #registerCard select, 
+    #registerCard button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    #registerCard button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    #registerCard button:hover {
+      background-color: #34495e;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: white;
+    }
+
+    th {
+      background: #2c3e50;
+      color: white;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+
+    .btn {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background-color: #34495e;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 30px;
+    }
+  </style>
+
+  <script>
+    let participants = [];
+
+    function registerParticipant() {
+      const name = nameVal("name");
+      const age = parseInt(nameVal("age"));
+      const mobile = nameVal("mobile");
+
+      const tests = Array.from(document.getElementById("tests").selectedOptions).map(o => o.value);
+      const results = Array.from(document.getElementById("results").selectedOptions).map(o => o.value);
+
+      if (!name || isNaN(age) || !mobile || tests.length === 0 || results.length === 0) {
+        alert("Please fill all fields and select tests with results.");
+        return;
+      }
+
+      if (tests.length !== results.length) {
+        alert("Select equal number of test results.");
+        return;
+      }
+
+      for (let i = 0; i < tests.length; i++) {
+        participants.push({ name, age, mobile, test: tests[i], result: results[i] });
+
+        const row = participantTable.insertRow();
+        row.innerHTML = `
+          <td>${name}</td>
+          <td>${age}</td>
+          <td>${mobile}</td>
+          <td>${tests[i]}</td>
+          <td>${results[i]}</td>
+        `;
+      }
+
+      registerForm.reset();
+      alert("Participant registered successfully!");
+    }
+
+    function downloadCSV() {
+      let csv = "Name,Age,Mobile,Test,Result\n";
+      participants.forEach(p => {
+        csv += `${p.name},${p.age},${p.mobile},${p.test},${p.result}\n`;
+      });
+
+      const blob = new Blob([csv], { type: "text/csv" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "health_camp_results.csv";
+      link.click();
+    }
+
+    function nameVal(id) {
+      return document.getElementById(id).value;
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <h1>🏥 Community Health Camp</h1>
+  <p>Free Health Screening for a Healthier Community</p>
+</header>
+
+<main class="container">
+
+  <div class="event-card">
+    <img src="img2.jpeg">
+
+    <div class="info-card blue">
+      <h2>📌 Event Overview</h2>
+      <p>
+        This Community Health Camp provides free medical screening to help
+        detect health issues early and promote preventive care.
+      </p>
+    </div>
+
+    <div class="info-card green">
+      <h2>📍 Event Place & Schedule</h2>
+      <p><strong>Venue:</strong> Community Center, Lakeside Town</p>
+      <p><strong>Date:</strong> March 15, 2026</p>
+      <p><strong>Time:</strong> 9:00 AM – 5:00 PM</p>
+    </div>
+
+    <div class="info-card orange">
+      <h2>🧪 Tests Involved</h2>
+      <ul>
+        <li>Blood Pressure</li>
+        <li>Blood Sugar</li>
+        <li>Cholesterol</li>
+        <li>Vision Check</li>
+        <li>BMI</li>
+      </ul>
+    </div>
+
+    <div class="info-card purple">
+      <h2>⚙️ Health Camp Process</h2>
+      <ol>
+        <li>Participant registration</li>
+        <li>Multiple health tests conducted</li>
+        <li>Results recorded (Positive / Negative)</li>
+        <li>Doctor consultation & advice</li>
+        <li>Health summary provided</li>
+      </ol>
+    </div>
+
+    <!-- Registration -->
+    <h2 style="text-align:center;">📝 Participant Registration</h2>
+    <div id="registerCard">
+      <form id="registerForm">
+        <label>Name</label>
+        <input type="text" id="name" required>
+
+        <label>Age</label>
+        <input type="number" id="age" required>
+
+        <label>Mobile Number</label>
+        <input type="tel" id="mobile" pattern="[0-9]{10}" required>
+
+        <label>Select Tests (Ctrl + Click)</label>
+        <select id="tests" multiple size="5">
+          <option>Blood Pressure</option>
+          <option>Blood Sugar</option>
+          <option>Cholesterol</option>
+          <option>Vision</option>
+          <option>BMI</option>
+        </select>
+
+        <label>Select Results (Same Order)</label>
+        <select id="results" multiple size="5">
+          <option>Positive</option>
+          <option>Negative</option>
+          <option>Positive</option>
+          <option>Negative</option>
+          <option>Positive</option>
+        </select>
+
+        <button type="button" onclick="registerParticipant()">Register</button>
+      </form>
+    </div>
+
+    <h2>📊 Registered Participants & Test Results</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mobile</th>
+        <th>Test</th>
+        <th>Result</th>
+      </tr>
+      <tbody id="participantTable"></tbody>
+    </table>
+
+    <button class="btn" onclick="downloadCSV()">⬇ Download CSV</button>
+    <a class="btn" href="index.html">← Back to Events</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 Lakeside Health Services</p>
+</footer>
+
+</body>
+</html>

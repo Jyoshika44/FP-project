@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TANDAV Event</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Event card wrapper */
+.event-card {
+  background: white;
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Image */
+.detail-img {
+  width: 700px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Section cards */
+.section-card {
+  display: flex;
+  align-items: flex-start;
+  background: #e7f3ff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.section-card:nth-child(odd) {
+  background: #fff3e6;
+}
+
+.section-card i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #007bff;
+  min-width: 30px;
+  text-align: center;
+}
+
+.section-card p, .section-card ul {
+  margin: 0;
+}
+
+/* Registration form */
+#registerForm {
+  width: 350px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#registerForm label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#registerForm input, #registerForm select, #registerForm button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#registerForm button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+#registerForm button:hover {
+  background: #0056b3;
+}
+
+#otpSection {
+  margin-top: 10px;
+}
+
+/* Table and admin panel */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #aaa;
+  padding: 8px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.admin {
+  background: #ffeeba;
+  padding: 15px;
+  margin-top: 30px;
+  border-radius: 5px;
+}
+
+/* Headings */
+h2 {
+  margin-top: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* List styling */
+ul {
+  margin-left: 20px;
+}
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+<div class="event-card">
+<img src="img4.jpg" class="detail-img">
+
+<div class="section-card">
+<i class="fa-solid fa-info-circle"></i>
+<div>
+  <h3>Event Details</h3>
+  <p>TANDAV is an energetic cultural performance event celebrating rhythm, movement, and expression. Participants showcase their talent through powerful dance performances, creativity, and stage presence in an electrifying competition.</p>
+</div>
+</div>
+
+<div class="section-card">
+<i class="fa-solid fa-clipboard-list"></i>
+<div>
+  <h3>How to Register</h3>
+  <ul>
+    <li>Fill the registration form below with all required details.</li>
+    <li>Click “Send OTP” and verify your registration.</li>
+    <li>Once verified, you will appear in the participants’ list.</li>
+  </ul>
+</div>
+</div>
+
+<div class="section-card">
+<i class="fa-solid fa-map-marker-alt"></i>
+<div>
+  <h3>Venue Details</h3>
+  <p>College Cultural Auditorium, Main Stage Arena. Reporting time is 9:00 AM on event day.</p>
+</div>
+</div>
+
+<div class="section-card">
+<i class="fa-solid fa-check-circle"></i>
+<div>
+  <h3>How Event Validates</h3>
+  <ul>
+    <li>Participants perform live before judges.</li>
+    <li>Evaluation based on performance, creativity, and stage presence.</li>
+    <li>Top 3 performers are declared winners and notified via email & mobile.</li>
+  </ul>
+</div>
+</div>
+
+<h2>TANDAV Registration Form</h2>
+<form id="registerForm">
+<label>Name</label>
+<input type="text" id="name" required>
+
+<label>Department</label>
+<input type="text" id="dept" required>
+
+<label>Email (Gmail)</label>
+<input type="email" id="email" required>
+
+<label>Mobile Number</label>
+<input type="tel" id="mobile" pattern="[0-9]{10}" required>
+
+<label>Participation Mode</label>
+<select id="mode" required>
+  <option value="">Select</option>
+  <option>Solo Performance</option>
+  <option>Group Leader</option>
+  <option>Group Member</option>
+</select>
+
+<label>Performance Rounds Attempted</label>
+<input type="number" id="attempted" min="0" required>
+
+<label>Successful Rounds</label>
+<input type="number" id="correct" min="0" required>
+
+<button type="button" onclick="sendOTP()">Send OTP</button>
+</form>
+
+<p id="otpMsg" style="text-align:center;"></p>
+
+<div id="otpSection" style="display:none; width:350px; margin:0 auto;">
+<label>Enter OTP</label>
+<input type="number" id="otpInput">
+<button onclick="verifyOTP()">Verify OTP</button>
+</div>
+
+<p id="notifyMsg" style="font-weight:bold; text-align:center;"></p>
+
+<h2>Participants</h2>
+<table>
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Dept</th>
+  <th>Email</th>
+  <th>Mobile</th>
+  <th>Mode</th>
+  <th>Rounds</th>
+  <th>Successful</th>
+  <th>Score</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody id="studentTable"></tbody>
+</table>
+
+<button onclick="downloadCSV()">Download Results</button>
+
+<div class="admin">
+<h2>Admin Panel</h2>
+<label>Admin Password</label>
+<input type="password" id="adminPass" placeholder="admin123">
+<button onclick="selectWinners()">Select Winners</button>
+</div>
+
+</div>
+
+<script>
+let generatedOTP;
+let participants = [];
+
+function sendOTP() {
+  generatedOTP = Math.floor(1000 + Math.random() * 9000);
+  document.getElementById("otpMsg").innerText =
+    "OTP sent to Email & Mobile (Demo OTP: " + generatedOTP + ")";
+  document.getElementById("otpSection").style.display = "block";
+}
+
+function verifyOTP() {
+  if (document.getElementById("otpInput").value == generatedOTP) {
+    registerStudent();
+    document.getElementById("notifyMsg").innerText =
+      "Registration successful & verified!";
+  } else {
+    alert("Invalid OTP!");
+  }
+}
+
+function registerStudent() {
+  const name = nameVal("name");
+  const dept = nameVal("dept");
+  const email = nameVal("email");
+  const mobile = nameVal("mobile");
+  const mode = nameVal("mode");
+  const attempted = parseInt(nameVal("attempted"));
+  const correct = parseInt(nameVal("correct"));
+
+  if (correct > attempted) {
+    alert("Successful rounds cannot exceed attempted!");
+    return;
+  }
+
+  const score = (correct * 2) + (attempted - correct);
+
+  participants.push({
+    name, dept, email, mobile, mode,
+    attempted, correct, score, status: "Verified"
+  });
+
+  const row = studentTable.insertRow();
+  row.innerHTML = `
+    <td>${name}</td>
+    <td>${dept}</td>
+    <td>${email}</td>
+    <td>${mobile}</td>
+    <td>${mode}</td>
+    <td>${attempted}</td>
+    <td>${correct}</td>
+    <td>${score}</td>
+    <td>Verified</td>
+  `;
+
+  registerForm.reset();
+  otpSection.style.display = "none";
+}
+
+function selectWinners() {
+  if (adminPass.value !== "admin123") {
+    alert("Unauthorized Admin!");
+    return;
+  }
+
+  participants.sort((a, b) => b.score - a.score);
+
+  for (let i = 0; i < participants.length; i++) {
+    let status = i < 3 ? "🏆 Winner" : "Not Selected";
+    participants[i].status = status;
+    studentTable.rows[i].cells[8].innerText = status;
+
+    if (i < 3) {
+      alert("Winner: " + participants[i].name +
+        "\nScore: " + participants[i].score +
+        "\nNotification sent!");
+    }
+  }
+}
+
+function downloadCSV() {
+  let csv = "Name,Dept,Email,Mobile,Mode,Rounds,Successful,Score,Status\n";
+  participants.forEach(p => {
+    csv += `${p.name},${p.dept},${p.email},${p.mobile},${p.mode},${p.attempted},${p.correct},${p.score},${p.status}\n`;
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "tandav_results.csv";
+  link.click();
+}
+
+function nameVal(id) {
+  return document.getElementById(id).value;
+}
+</script>
+
+</body>
+</html>

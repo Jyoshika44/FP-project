@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Research & Innovation Symposium</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f5;
+      margin: 0;
+    }
+
+    .site-header {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+    }
+
+    .event-card {
+      background: white;
+      padding: 25px;
+      margin: 25px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    img {
+      height:300px;
+      width: 700px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* Section headers */
+    h2 {
+      color: #2c3e50;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    h2 i {
+      background: #2c3e50;
+      color: white;
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 14px;
+    }
+
+    /* Info Cards */
+    .info-card {
+      padding: 18px;
+      border-radius: 10px;
+      margin: 18px 0;
+      border-left: 6px solid;
+      transition: transform 0.2s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .blue { background: #e3f2fd; border-color: #2196f3; }
+    .green { background: #e8f5e9; border-color: #4caf50; }
+    .orange { background: #fff3e0; border-color: #ff9800; }
+    .purple { background: #f3e5f5; border-color: #9c27b0; }
+    .yellow { background: #fffde7; border-color: #fbc02d; }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 9px;
+      margin-top: 6px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button, .btn {
+      margin-top: 15px;
+      padding: 10px 18px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 6px;
+    }
+
+    button:hover, .btn:hover {
+      background-color: #34495e;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin-top: 30px;
+    }
+  </style>
+
+  <script>
+    function registerStudent() {
+      const name = document.getElementById("name").value;
+      const dept = document.getElementById("dept").value;
+      const type = document.getElementById("type").value;
+
+      if (name === "" || dept === "" || type === "") {
+        alert("Please fill all fields");
+        return;
+      }
+
+      const table = document.getElementById("studentTable");
+      const row = table.insertRow();
+
+      row.insertCell(0).innerText = name;
+      row.insertCell(1).innerText = dept;
+      row.insertCell(2).innerText = type;
+
+      alert("Registration Successful!");
+      document.getElementById("registerForm").reset();
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <h1>🔬 Research & Innovation Symposium</h1>
+  <p>Showcasing Ideas, Research & Technological Innovations</p>
+</header>
+
+<main class="container">
+
+  <div class="event-card">
+    <img src="img1.jpeg">
+
+    <div class="info-card blue">
+      <h2><i class="fas fa-book"></i> Event Overview</h2>
+      <p>
+        A platform for students, researchers, and faculty to present
+        innovative ideas, research papers, and prototypes while encouraging
+        interdisciplinary collaboration.
+      </p>
+    </div>
+
+    <div class="info-card green">
+      <h2><i class="fas fa-calendar-alt"></i> Event Details</h2>
+      <p><strong>Date:</strong> May 18, 2026</p>
+      <p><strong>Time:</strong> 9:30 AM – 4:30 PM</p>
+      <p><strong>Venue:</strong> Conference Hall</p>
+      <p><strong>Eligibility:</strong> UG, PG & Research Scholars</p>
+    </div>
+
+    <div class="info-card orange">
+      <h2><i class="fas fa-clipboard-list"></i> How to Register</h2>
+      <ul>
+        <li>Enter participant details</li>
+        <li>Select participation type</li>
+        <li>Click Register</li>
+        <li>View details instantly</li>
+      </ul>
+    </div>
+
+    <div class="info-card purple">
+      <h2><i class="fas fa-gavel"></i> Selection Process</h2>
+      <ul>
+        <li>Expert evaluation</li>
+        <li>Originality & innovation</li>
+        <li>Presentation & Q&A</li>
+        <li>Final awards ceremony</li>
+      </ul>
+    </div>
+
+    <div class="info-card yellow">
+      <h2><i class="fas fa-flask"></i> Tracks</h2>
+      <ul>
+        <li>Paper Presentations</li>
+        <li>Project & Prototype Expo</li>
+        <li>Startup Showcase</li>
+        <li>Poster Presentations</li>
+      </ul>
+    </div>
+
+    <div class="info-card green">
+      <h2><i class="fas fa-trophy"></i> Prizes & Awards</h2>
+      <ul>
+        <li>🥇 Best Research Paper</li>
+        <li>🥈 Best Innovative Project</li>
+        <li>🥉 Best Poster</li>
+        <li>🎖 Jury Award</li>
+        <li>📜 Participation Certificates</li>
+      </ul>
+    </div>
+
+    <h2><i class="fas fa-pen"></i> Event Registration</h2>
+    <form id="registerForm">
+      <label>Participant Name</label>
+      <input type="text" id="name" required>
+
+      <label>Department / Institution</label>
+      <input type="text" id="dept" required>
+
+      <label>Participation Type</label>
+      <select id="type" required>
+        <option value="">Select Type</option>
+        <option>Paper Presentation</option>
+        <option>Project Expo</option>
+        <option>Poster Presentation</option>
+        <option>Attendee</option>
+      </select>
+
+      <button type="button" onclick="registerStudent()">Register</button>
+    </form>
+
+    <h2><i class="fas fa-users"></i> Registered Participants</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Department / Institution</th>
+        <th>Participation Type</th>
+      </tr>
+      <tbody id="studentTable"></tbody>
+    </table>
+
+    <a class="btn" href="index.html">← Back to Events</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>© Vignan University</p>
+</footer>
+
+</body>
+</html>
